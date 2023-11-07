@@ -1,0 +1,23 @@
+repeat
+    wait()
+until game:IsLoaded()
+
+local player = game.Players.LocalPlayer
+local character = player.Character
+
+local part = Instance.new("Part", character)
+part.Transparency = 1
+part.Anchored = true
+part.CanCollide = false
+
+local tweenService = game:GetService("TweenService)
+local runService = game:GetService("RunService")
+local camera = workspace.CurrentCamera
+
+camera.CameraSubject = part
+
+runService.RenderStepped:Connect(function()
+    local tween = tweenService:Create(part, TweenInfo.new(2, Enum.EasingStyle.Back), {CFrame = character.HumaniodRootPart.CFrame * CFrame.new(0, 2, 0)})
+    tween:Play()
+
+end)
